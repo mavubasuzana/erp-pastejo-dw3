@@ -1,0 +1,47 @@
+
+<section class="page" id="animal">
+    <div class="page-heading">
+        <div>
+            <span class="eyebrow">GERENCIAMENTO</span>
+            <h1>Animais</h1>
+            <p>Cadastro e gerenciamento do rebanho.</p>
+        </div>
+        <button class="btn-primary" onclick="novoAnimal()">+ Novo animal</button>
+    </div>
+
+    <div class="panel">
+        <div class="table-container">
+            <table class="data-table">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Nome</th>
+                        <th>Data de nascimento</th>
+                        <th>Ações</th>
+                    </tr>
+                </thead>
+                <tbody id="tabelaAnimais"></tbody>
+            </table>
+        </div>
+    </div>
+</section>
+
+<div class="modal-overlay" id="modalAnimal">
+    <div class="modal">
+        <h2 id="tituloAnimal">Novo animal</h2>
+        <form id="formAnimal">
+            <input type="hidden" id="animalid">
+
+            <label>Nome</label>
+            <input type="text" id="nomeAnimal" required>
+
+            <label>Data de nascimento</label>
+            <input type="date" id="dataNascAnimal" required>
+
+            <div class="modal-actions">
+                <button type="button" class="btn-secondary" onclick="fecharModal('modalAnimal')">Cancelar</button>
+                <button type="submit" class="btn-primary">Salvar</button>
+            </div>
+        </form>
+    </div>
+</div>

@@ -1,0 +1,59 @@
+### Login para obter o token
+# @name loginAutenticado
+POST http://localhost:40001/Login HTTP/1.1
+content-type: application/json
+
+{
+    "username": "admin",
+    "password": "admin"
+}
+
+### Seta o token
+@accessToken = {{loginAutenticado.response.body.$.token}}
+
+### InsertAlocado
+POST http://localhost:40001/insertAlocado HTTP/1.1
+content-type: application/json
+Authorization: Bearer {{accessToken}}
+
+{
+    "animalidfk": 1,
+    "piqueteidfk": 1,
+    "datainicio": "2026-11-23",
+    "datafinal": "2026-11-30"
+}
+
+### GetAllAlocado
+GET http://localhost:40001/getAllAlocado HTTP/1.1
+content-type: application/json
+Authorization: Bearer {{accessToken}}
+
+### GetAlocadoByID
+GET http://localhost:40001/getAlocadoByID/1 HTTP/1.1
+content-type: application/json
+Authorization: Bearer {{accessToken}}
+
+### UpdateAlocado
+PUT http://localhost:40001/updateAlocado/1 HTTP/1.1
+content-type: application/json
+Authorization: Bearer {{accessToken}}
+
+{
+    "animalidfk": 1,
+    "piqueteidfk": 1,
+    "datainicio": "2026-11-24",
+    "datafinal": "2026-12-05"
+}
+
+### DeleteAlocado (soft delete)
+DELETE http://localhost:40001/deleteAlocado/1 HTTP/1.1
+content-type: application/json
+Authorization: Bearer {{accessToken}}
+
+### GetAllAlocado depois do delete (o registro removido não deve aparecer)
+GET http://localhost:40001/getAllAlocado HTTP/1.1
+content-type: application/json
+Authorization: Bearer {{accessToken}}
+
+### Teste sem token (deve retornar 401)
+GET http://localhost:40001/getAllAlocado HTTP/1.1

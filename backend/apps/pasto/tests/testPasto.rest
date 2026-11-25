@@ -1,0 +1,55 @@
+### Login para obter o token
+# @name loginAutenticado
+POST http://localhost:40001/Login HTTP/1.1
+content-type: application/json
+
+{
+    "username": "admin",
+    "password": "admin"
+}
+
+### Seta o token
+@accessToken = {{loginAutenticado.response.body.$.token}}
+
+### InsertPasto
+POST http://localhost:40001/insertPasto HTTP/1.1
+content-type: application/json
+Authorization: Bearer {{accessToken}}
+
+{
+    "descricao": "Pasto Teste",
+    "areatotal": 10
+}
+
+### GetAllPasto
+GET http://localhost:40001/getAllPasto HTTP/1.1
+content-type: application/json
+Authorization: Bearer {{accessToken}}
+
+### GetPastoByID
+GET http://localhost:40001/getPastoByID/1 HTTP/1.1
+content-type: application/json
+Authorization: Bearer {{accessToken}}
+
+### UpdatePasto
+PUT http://localhost:40001/updatePasto/1 HTTP/1.1
+content-type: application/json
+Authorization: Bearer {{accessToken}}
+
+{
+    "descricao": "Pasto Teste Alterado",
+    "areatotal": 15
+}
+
+### DeletePasto (soft delete)
+DELETE http://localhost:40001/deletePasto/1 HTTP/1.1
+content-type: application/json
+Authorization: Bearer {{accessToken}}
+
+### GetAllPasto depois do delete (o registro removido não deve aparecer)
+GET http://localhost:40001/getAllPasto HTTP/1.1
+content-type: application/json
+Authorization: Bearer {{accessToken}}
+
+### Teste sem token (deve retornar 401)
+GET http://localhost:40001/getAllPasto HTTP/1.1

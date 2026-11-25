@@ -1,0 +1,55 @@
+
+<section class="page" id="alocado">
+    <div class="page-heading">
+        <div>
+            <span class="eyebrow">GERENCIAMENTO</span>
+            <h1>Alocações</h1>
+            <p>Controle de permanência dos animais nos piquetes.</p>
+        </div>
+        <button class="btn-primary" onclick="novoAlocado()">+ Nova alocação</button>
+    </div>
+
+    <div class="panel">
+        <div class="table-container">
+            <table class="data-table">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Animal</th>
+                        <th>Piquete</th>
+                        <th>Data inicial</th>
+                        <th>Data final</th>
+                        <th>Ações</th>
+                    </tr>
+                </thead>
+                <tbody id="tabelaAlocados"></tbody>
+            </table>
+        </div>
+    </div>
+</section>
+
+<div class="modal-overlay" id="modalAlocado">
+    <div class="modal">
+        <h2 id="tituloAlocado">Nova alocação</h2>
+        <form id="formAlocado">
+            <input type="hidden" id="alocadoid">
+
+            <label>Animal</label>
+            <select id="animalfk" required></select>
+
+            <label>Piquete</label>
+            <select id="piquetefk" required></select>
+
+            <label>Data inicial</label>
+            <input type="date" id="dataInicio" required>
+
+            <label>Data final</label>
+            <input type="date" id="dataFinal" required>
+
+            <div class="modal-actions">
+                <button type="button" class="btn-secondary" onclick="fecharModal('modalAlocado')">Cancelar</button>
+                <button type="submit" class="btn-primary">Salvar</button>
+            </div>
+        </form>
+    </div>
+</div>

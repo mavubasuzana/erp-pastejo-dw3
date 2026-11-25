@@ -1,0 +1,26 @@
+### Teste de Login
+# @name loginAutenticado
+POST http://localhost:40001/Login HTTP/1.1
+content-type: application/json
+
+{
+    "username": "admin",
+    "password": "admin"
+}
+
+### Teste de Login com dados inválidos (deve retornar 401)
+POST http://localhost:40001/Login HTTP/1.1
+content-type: application/json
+
+{
+    "username": "usuario_invalido",
+    "password": "senha_invalida"
+}
+
+### Seta o token
+@accessToken = {{loginAutenticado.response.body.$.token}}
+
+### Teste de Logout
+POST http://localhost:40001/Logout HTTP/1.1
+content-type: application/json
+Authorization: Bearer {{accessToken}}

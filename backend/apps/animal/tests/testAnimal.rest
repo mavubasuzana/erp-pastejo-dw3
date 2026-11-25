@@ -1,0 +1,55 @@
+### Login para obter o token
+# @name loginAutenticado
+POST http://localhost:40001/Login HTTP/1.1
+content-type: application/json
+
+{
+    "username": "admin",
+    "password": "admin"
+}
+
+### Seta o token
+@accessToken = {{loginAutenticado.response.body.$.token}}
+
+### InsertAnimal
+POST http://localhost:40001/insertAnimal HTTP/1.1
+content-type: application/json
+Authorization: Bearer {{accessToken}}
+
+{
+    "nome": "Animal Teste",
+    "datanasc": "2022-03-10"
+}
+
+### GetAllAnimal
+GET http://localhost:40001/getAllAnimal HTTP/1.1
+content-type: application/json
+Authorization: Bearer {{accessToken}}
+
+### GetAnimalByID
+GET http://localhost:40001/getAnimalByID/1 HTTP/1.1
+content-type: application/json
+Authorization: Bearer {{accessToken}}
+
+### UpdateAnimal
+PUT http://localhost:40001/updateAnimal/1 HTTP/1.1
+content-type: application/json
+Authorization: Bearer {{accessToken}}
+
+{
+    "nome": "Animal Teste Alterado",
+    "datanasc": "2022-04-15"
+}
+
+### DeleteAnimal (soft delete)
+DELETE http://localhost:40001/deleteAnimal/1 HTTP/1.1
+content-type: application/json
+Authorization: Bearer {{accessToken}}
+
+### GetAllAnimal depois do delete (o registro removido não deve aparecer)
+GET http://localhost:40001/getAllAnimal HTTP/1.1
+content-type: application/json
+Authorization: Bearer {{accessToken}}
+
+### Teste sem token (deve retornar 401)
+GET http://localhost:40001/getAllAnimal HTTP/1.1

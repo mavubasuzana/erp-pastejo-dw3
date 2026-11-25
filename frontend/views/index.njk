@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>ERP Pastejo Rotacionado</title>
+    <link rel="stylesheet" href="/styles/style.css">
+</head>
+<body class="auth-locked" data-servidor-dw3="{{ servidorDw3 }}">
+
+<div class="layout">
+
+    <aside class="sidebar" id="sidebar">
+        <div class="brand">
+            <div class="brand-icon">🌱</div>
+            <div>
+                <h2>Pastejo ERP</h2>
+                <span>Gestão Agropecuária</span>
+            </div>
+        </div>
+
+        <p class="menu-title">MENU PRINCIPAL</p>
+
+        <nav class="menu">
+            <a href="#" class="menu-link active" data-page="dashboard">▦ Dashboard</a>
+            <a href="#" class="menu-link" data-page="pasto">🌿 Pastos</a>
+            <a href="#" class="menu-link" data-page="piquete">▧ Piquetes</a>
+            <a href="#" class="menu-link" data-page="animal">🐄 Animais</a>
+            <a href="#" class="menu-link" data-page="alocado">⇄ Alocações</a>
+        </nav>
+
+        <div class="sidebar-footer">
+            <span class="status-dot"></span>
+            Pastejo Rotacionado
+        </div>
+    </aside>
+
+    <main class="main-content">
+
+        <header class="topbar">
+            <button id="menuToggle" class="menu-toggle">☰</button>
+
+            <div class="breadcrumb">
+                <strong id="pageTitle">Dashboard</strong>
+            </div>
+
+            <div class="user-info">
+                <div class="user-avatar">U</div>
+                <span>Usuário</span>
+                <button id="logoutButton"
+                        class="btn-secondary logout-button"
+                        type="button">
+                    Sair
+                </button>
+            </div>
+        </header>
+
+        <section class="page active" id="dashboard">
+
+            <div class="page-heading">
+                <div>
+                    <span class="eyebrow">VISÃO GERAL</span>
+                    <h1>Dashboard</h1>
+                    <p>Gestão de pastagens e rebanho.</p>
+                </div>
+            </div>
+
+            <div class="welcome-card">
+                <div>
+                    <span class="welcome-label">GESTÃO AGROPECUÁRIA</span>
+                    <h2>ERP Pastejo Rotacionado</h2>
+                    <p>
+                        Gerencie pastos, piquetes, animais e suas alocações.
+                    </p>
+                </div>
+
+                <div class="welcome-icon">🌾</div>
+            </div>
+
+            <div class="cards-grid">
+
+                <div class="stat-card">
+                    <span>Pastos</span>
+                    <h3 id="totalPastos">—</h3>
+                </div>
+
+                <div class="stat-card">
+                    <span>Piquetes</span>
+                    <h3 id="totalPiquetes">—</h3>
+                </div>
+
+                <div class="stat-card">
+                    <span>Animais</span>
+                    <h3 id="totalAnimais">—</h3>
+                </div>
+
+                <div class="stat-card">
+                    <span>Alocações</span>
+                    <h3 id="totalAlocados">—</h3>
+                </div>
+
+            </div>
+
+            <div class="panel">
+                <div class="panel-header">
+                    <h3>Módulos do sistema</h3>
+                </div>
+
+                <div class="module-list">
+                    <button class="module-item" data-page="pasto">
+                        🌿 <span>Pastos</span> →
+                    </button>
+
+                    <button class="module-item" data-page="piquete">
+                        ▧ <span>Piquetes</span> →
+                    </button>
+
+                    <button class="module-item" data-page="animal">
+                        🐄 <span>Animais</span> →
+                    </button>
+
+                    <button class="module-item" data-page="alocado">
+                        ⇄ <span>Alocações</span> →
+                    </button>
+                </div>
+            </div>
+
+        </section>
+
+        {% include "pasto/pasto.njk" %}
+        {% include "piquete/piquete.njk" %}
+        {% include "animal/animal.njk" %}
+        {% include "alocado/alocado.njk" %}
+
+    </main>
+</div>
+
+{% include "login/login.njk" %}
+
+<script src="/js/script.js"></script>
+</body>
+</html>

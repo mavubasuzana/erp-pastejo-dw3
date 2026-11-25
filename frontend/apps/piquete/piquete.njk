@@ -1,0 +1,55 @@
+
+<section class="page" id="piquete">
+    <div class="page-heading">
+        <div>
+            <span class="eyebrow">GERENCIAMENTO</span>
+            <h1>Piquetes</h1>
+            <p>Gerenciamento dos piquetes e suas localizações.</p>
+        </div>
+        <button class="btn-primary" onclick="novoPiquete()">+ Novo piquete</button>
+    </div>
+
+    <div class="panel">
+        <div class="table-container">
+            <table class="data-table">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Descrição</th>
+                        <th>Pasto</th>
+                        <th>Latitude</th>
+                        <th>Longitude</th>
+                        <th>Ações</th>
+                    </tr>
+                </thead>
+                <tbody id="tabelaPiquetes"></tbody>
+            </table>
+        </div>
+    </div>
+</section>
+
+<div class="modal-overlay" id="modalPiquete">
+    <div class="modal">
+        <h2 id="tituloPiquete">Novo piquete</h2>
+        <form id="formPiquete">
+            <input type="hidden" id="piqueteid">
+
+            <label>Descrição</label>
+            <input type="text" id="descricaoPiquete" required>
+
+            <label>Pasto</label>
+            <select id="pastofk" required></select>
+
+            <label>Latitude</label>
+            <input type="number" id="latitude" step="any">
+
+            <label>Longitude</label>
+            <input type="number" id="longitude" step="any">
+
+            <div class="modal-actions">
+                <button type="button" class="btn-secondary" onclick="fecharModal('modalPiquete')">Cancelar</button>
+                <button type="submit" class="btn-primary">Salvar</button>
+            </div>
+        </form>
+    </div>
+</div>

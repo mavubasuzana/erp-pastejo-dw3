@@ -1,0 +1,59 @@
+### Login para obter o token
+# @name loginAutenticado
+POST http://localhost:40001/Login HTTP/1.1
+content-type: application/json
+
+{
+    "username": "admin",
+    "password": "admin"
+}
+
+### Seta o token
+@accessToken = {{loginAutenticado.response.body.$.token}}
+
+### InsertPiquete
+POST http://localhost:40001/insertPiquete HTTP/1.1
+content-type: application/json
+Authorization: Bearer {{accessToken}}
+
+{
+    "descricao": "Piquete Teste",
+    "latitude": -20.4200,
+    "longitude": -49.9700,
+    "pastoidfk": 1
+}
+
+### GetAllPiquete
+GET http://localhost:40001/getAllPiquete HTTP/1.1
+content-type: application/json
+Authorization: Bearer {{accessToken}}
+
+### GetPiqueteByID
+GET http://localhost:40001/getPiqueteByID/1 HTTP/1.1
+content-type: application/json
+Authorization: Bearer {{accessToken}}
+
+### UpdatePiquete
+PUT http://localhost:40001/updatePiquete/1 HTTP/1.1
+content-type: application/json
+Authorization: Bearer {{accessToken}}
+
+{
+    "descricao": "Piquete Teste Alterado",
+    "latitude": -20.4300,
+    "longitude": -49.9800,
+    "pastoidfk": 1
+}
+
+### DeletePiquete (soft delete)
+DELETE http://localhost:40001/deletePiquete/1 HTTP/1.1
+content-type: application/json
+Authorization: Bearer {{accessToken}}
+
+### GetAllPiquete depois do delete (o registro removido não deve aparecer)
+GET http://localhost:40001/getAllPiquete HTTP/1.1
+content-type: application/json
+Authorization: Bearer {{accessToken}}
+
+### Teste sem token (deve retornar 401)
+GET http://localhost:40001/getAllPiquete HTTP/1.1
